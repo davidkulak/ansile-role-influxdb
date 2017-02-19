@@ -36,6 +36,9 @@
     - "{{ influxdb_meta }}"
     - "{{ influxdb_wal }}"
 
+- name: Start service
+  service: "name=influxdb state=started sleep=5"
+
 - name: Create influxdb admins
   command: "influx -username '{{influxdb_admin_users[0].user}}' -password '{{influxdb_admin_users[0].pass}}' -execute \"CREATE USER {{ item.user }} WITH PASSWORD '{{ item.pass }}' WITH ALL PRIVILEGES\""
   with_items: "{{ influxdb_admin_users }}" 
