@@ -1,14 +1,27 @@
-# Ansible Role Influxdb
+Role Name
+=========
 
 Install and configure InfluxDB.
 
 Actually only work on Debian 8.
 
-# Variables
+Requirements
+------------
+
+None
+
+Role Variables
+--------------
 
 All variables listed in defaults/main.yaml
 
-## Example Playbook
+Dependencies
+------------
+
+None
+
+Example Playbook
+----------------
 
     - hosts: influxdb
       vars:
@@ -23,3 +36,13 @@ All variables listed in defaults/main.yaml
                 - collectd
       roles:
         - ansible-role-influxdb
+
+License
+-------
+
+BSD
+
+Author Information
+------------------
+
+David KULAK
