@@ -5,7 +5,7 @@ influxdb_databases: []
 influxdb_grants: []
 
 # Directory
-influxdb_dir  : "/app/influxdb"
+influxdb_dir  : "/var/lib/influxdb"
 influxdb_data : "{{ influxdb_dir }}/data"
 influxdb_meta : "{{ influxdb_dir }}/meta"
 influxdb_wal  : "{{ influxdb_dir }}/wal"
