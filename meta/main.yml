@@ -12,8 +12,9 @@ galaxy_info:
     versions:
       - wheezy
   
-  galaxy_tags: []
+  galaxy_tags: 
     - database
     - database:nosql
     - monitoring
+
 dependencies: []
