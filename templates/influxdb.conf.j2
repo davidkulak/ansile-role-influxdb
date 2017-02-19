@@ -335,14 +335,14 @@
 ###
 
 [[collectd]]
-  # enabled = false
-  # bind-address = ":25826"
-  # database = "collectd"
-  # retention-policy = ""
+  enabled = {{ influxdb_collectd_enabled }}
+  bind-address = "{{ influxdb_collectd_bind_address }}"
+  database = "{{ influxdb_collectd_database  }}"
+  #retention-policy = ""
   #
   # The collectd service supports either scanning a directory for multiple types
   # db files, or specifying a single db file.
-  # typesdb = "/usr/local/share/collectd"
+  typesdb = "/usr/local/share/collectd"
   #
   # security-level = "none"
   # auth-file = "/etc/collectd/auth_file"
