@@ -1,7 +1,7 @@
 Ansible Role InfluxDB
 =========
 
-Install and configure InfluxDB.
+Install and configure InfluxDB with admin,user,base and grant management
 
 Actually only work on Debian 8.
 
