@@ -36,5 +36,18 @@
     - "{{ influxdb_meta }}"
     - "{{ influxdb_wal }}"
 
-#- name: Start the InfluxDB service
-#  service: name=influxdb state=restarted enabled=yes
+- name: Create influxdb admins
+  command: "influx -username '{{influxdb_admin_users[0].user}}' -password '{{influxdb_admin_users[0].pass}}' -execute \"CREATE USER {{ item.user }} WITH PASSWORD '{{ item.pass }}' WITH ALL PRIVILEGES\""
+  with_items: "{{ influxdb_admin_users }}" 
+
+- name: Create influxdb users
+  command: "influx -username '{{influxdb_admin_users[0].user}}' -password '{{influxdb_admin_users[0].pass}}' -execute \"CREATE USER {{item.user}} WITH PASSWORD '{{item.pass}}'\""
+  with_items: "{{ influxdb_users }}"
+
+- name: Create influxdb databases
+  command: "influx -username '{{influxdb_admin_users[0].user}}' -password '{{influxdb_admin_users[0].pass}}' -execute \"CREATE DATABASE {{item}}\""
+  with_items: "{{ influxdb_databases }}"
+
+- name: Create influxdb grants
+  command: "influx -username '{{influxdb_admin_users[0].user}}' -password '{{influxdb_admin_users[0].pass}}' -execute \"GRANT {{item.privilege}} ON {{item.database}} TO {{item.user}}\""
+  with_items: "{{ influxdb_grants }}"

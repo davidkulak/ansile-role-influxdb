@@ -1,3 +1,9 @@
+# Users
+influxdb_admin_users: []
+influxdb_users: []
+influxdb_databases: []
+influxdb_grants: []
+
 # Directory
 influxdb_dir  : "/app/influxdb"
 influxdb_data : "{{ influxdb_dir }}/data"
