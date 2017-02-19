@@ -1,0 +1,40 @@
+- name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Ensure apt-transport-https is present
+  apt: name=apt-transport-https state=present
+
+- name: Import InfluxDB GPG signing key
+  apt_key: url=https://repos.influxdata.com/influxdb.key state=present
+
+- name: Add InfluxDB repository
+  apt_repository: repo='deb https://repos.influxdata.com/debian jessie stable' state=present
+
+- name: Install InfluxDB packages
+  apt: name=influxdb state=present
+
+- name: Configuration
+  template:
+    src: influxdb.conf.j2
+    dest: /etc/influxdb/influxdb.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart influxdb
+
+- name: Create dir if they not exists
+  file:
+    path="{{ item }}"
+    owner=influxdb
+    group=influxdb
+    mode=0755
+    state=directory
+  with_items:
+    - "{{ influxdb_data }}"
+    - "{{ influxdb_meta }}"
+    - "{{ influxdb_wal }}"
+
+#- name: Start the InfluxDB service
+#  service: name=influxdb state=restarted enabled=yes

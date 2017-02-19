@@ -1,0 +1,28 @@
+# Directory
+influxdb_dir  : "/app/influxdb"
+influxdb_data : "{{ influxdb_dir }}/data"
+influxdb_meta : "{{ influxdb_dir }}/meta"
+influxdb_wal  : "{{ influxdb_dir }}/wal"
+
+# Admin
+influxdb_admin_enabled           : "false"
+influxdb_admin_bind_address      : ":8083"
+influxdb_admin_https_enabled     : "false"
+influxdb_admin_https_certificate : "/etc/ssl/influxdb.pem"
+
+# http
+influxdb_http_enabled              : "true"
+influxdb_http_bind_address         : ":8086"
+influxdb_http_auth_enabled         : "false"
+influxdb_http_realm                : "InfluxDB"
+influxdb_http_log_enabled          : "true"
+influxdb_http_write_tracing        : "false"
+influxdb_http_pprof_enabled        : "true"
+influxdb_http_https_enabled        : "false"
+influxdb_http_https_certificate    : "/etc/ssl/influxdb.pem"
+influxdb_http_https_private_key    : ""
+influxdb_http_shared_secret        : ""
+influxdb_http_max_row_limit        : 10000
+influxdb_http_max_connection_limit : 0
+influxdb_http_unix_socket_enabled  : "false"
+influxdb_http_bind_socket          : "/var/run/influxdb.sock"
