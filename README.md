@@ -1,4 +1,4 @@
-Role Name
+Ansible Role InfluxDB
 =========
 
 Install and configure InfluxDB.
